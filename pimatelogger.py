@@ -24,6 +24,36 @@ graphpath = path+'/graphs'          #Path to Graph directory
 i=0
 
 #Funktionen vorbereiten
+def printgraph(a):
+    if a == 'temp':
+        title = 'Temperatur'
+        label = 'in *C'
+    elif a == 'humidity':
+        title = 'Rel. Luftfeuchtigkeit'
+        label = 'in %'
+
+    for plot in ['hourly', 'daily', 'weekly', 'monthly']:
+        if plot == 'weekly':
+            period = 'w'
+        elif plot == 'daily':
+            period = 'd'
+        elif plot == 'monthly':
+            period = 'm'
+        elif plot == 'hourly':
+            period = 'h'
+
+        ret = rrdtool.graph("/%s%s_%s-%s.png" %(graphpath,rrddbname,a,plot),
+                            "--start",
+                            "-1%s" %(period),
+                            "--title=%s (%s)" %(title,plot),
+                            "--vertical-label=%s" %(label),
+                            '--watermark=%s' %(st),
+                            "-w 800",
+                            "--slope-mode",
+                            "DEF:%s=%s:%s_%s:AVERAGE" %(a,rrdfilename,rrddbname,a),
+                            "LINE1:%s#0000FF:%s_%s" %(a, rrddbname, a))
+
+
 def printconsgraph():
     for plot in ['hourly', 'daily', 'weekly', 'monthly']:
         if plot == 'weekly':
@@ -54,6 +84,8 @@ def printconsgraph():
         os.system ("rm -rf /var/www/graphs")
         os.system ("cp -rf %s/ /var/www/graphs" %(graphpath))
 
+
+
 try:
     os.stat(path)
 except:
@@ -66,7 +98,7 @@ except:
 
 #RRD-Datenbank anlegen falls sie noch nicht existiert
 try:
-    with open(path+"/"+rrdfilename): pass
+    with open(rrdfilename): pass
     print "Database found: " + path + "/" + rrdfilename
     i=1
 except IOError:
@@ -81,6 +113,8 @@ except IOError:
                          "RRA:AVERAGE:0.5:15:2880",
                          "RRA:AVERAGE:0.5:60:8760")
     i=1
+
+
 
 while i!=0:
     h, t = dht.read_retry(sensor, pin)
