@@ -50,7 +50,7 @@ def printgraph(a):
                             '--watermark=%s' %(st),
                             "-w 800",
                             "--slope-mode",
-                            "DEF:%s=%s:%s_%s:AVERAGE" %(a,rrdfilename,rrddbname,a),
+                            "DEF:%s=%s/%s:%s_%s:AVERAGE" %(a,path,rrdfilename,rrddbname,a),
                             "LINE1:%s#0000FF:%s_%s" %(a, rrddbname, a))
 
 
