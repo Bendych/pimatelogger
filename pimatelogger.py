@@ -86,7 +86,15 @@ def printconsgraph():
 
 
 
+try:
+    os.stat(path)
+except:
+    os.mkdir(path)
 
+try:
+    os.stat(graphpath)
+except:
+    os.mkdir(graphpath)
 
 #RRD-Datenbank anlegen falls sie noch nicht existiert
 try:
@@ -105,10 +113,8 @@ except IOError:
                          "RRA:AVERAGE:0.5:15:2880",
                          "RRA:AVERAGE:0.5:60:8760")
     i=1
-try:
-    os.stat(graphpath)
-except:
-    os.mkdir(graphpath)
+
+
 
 while i!=0:
     h, t = dht.read_retry(sensor, pin)
