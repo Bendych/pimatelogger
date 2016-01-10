@@ -9,7 +9,7 @@ import os
 ### User configuration starts here
 interval = 60                       #Measuring interval in seconds
 rrddbname = 'pimatelogger'          #Name of the RRD Database
-sensorname='Living Room'                 #Sensor Label
+sensorname='Livingroom'                 #Sensor Label
 sensor = dht.AM2302                 #Sensor Type
 pin = 4                             #Data Pin
 
