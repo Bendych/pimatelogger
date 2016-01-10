@@ -28,7 +28,7 @@ def printgraph(a):
     if a == 'temp':
         title = 'Temperatur'
         label = 'in *C'
-    elif a == 'humidity':
+    elif a == 'hum':
         title = 'Rel. Luftfeuchtigkeit'
         label = 'in %'
 
@@ -77,9 +77,9 @@ def printconsgraph():
                             "-h 300",
                             "--slope-mode",
                             "DEF:temp=%s:%s_temp:AVERAGE" %(rrdfilename,rrddbname),
-                            "DEF:humidity=%s:%s_hum:AVERAGE" %(rrdfilename,rrddbname),
+                            "DEF:hum=%s:%s_hum:AVERAGE" %(rrdfilename,rrddbname),
                             "LINE1:temp#0000FF:Temperature",
-                            "LINE2:humidity#00FF00:Humidity"
+                            "LINE2:hum#00FF00:Humidity"
                             )
         os.system ("rm -rf /var/www/graphs")
         os.system ("cp -rf %s/ /var/www/graphs" %(graphpath))
@@ -129,7 +129,7 @@ while i!=0:
 
     print "Creating graphics at " + graphpath
     printgraph('temp')
-    printgraph('humidity')
+    printgraph('hum')
     printconsgraph()
 
     print st, t, h
