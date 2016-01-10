@@ -106,9 +106,9 @@ except IOError:
                          "RRA:AVERAGE:0.5:60:8760")
     i=1
 try:
-    os.stat(graphpath)
+    os.stat(graphpath+"/")
 except:
-    os.mkdir(graphpath)
+    os.mkdir(graphpath+"/")
 
 while i!=0:
     h, t = dht.read_retry(sensor, pin)
