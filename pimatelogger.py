@@ -76,8 +76,8 @@ def printconsgraph():
                             "-w 600",
                             "-h 300",
                             "--slope-mode",
-                            "DEF:temp=%s:%s_temp:AVERAGE" %(rrdfilename,rrddbname),
-                            "DEF:hum=%s:%s_hum:AVERAGE" %(rrdfilename,rrddbname),
+                            "DEF:temp=%s/%s:%s_temp:AVERAGE" %(path,rrdfilename,rrddbname),
+                            "DEF:hum=%s/%s:%s_hum:AVERAGE" %(path,rrdfilename,rrddbname),
                             "LINE1:temp#0000FF:Temperature",
                             "LINE2:hum#00FF00:Humidity"
                             )
