@@ -52,7 +52,7 @@ def printgraph(a):
                             "--slope-mode",
                             "DEF:%s=%s:%s_%s:AVERAGE" %(a,rrdfilename,rrddbname,a),
                             "LINE1:%s#0000FF:%s_%s" %(a, rrddbname, a))
-        
+
 
 def printconsgraph():
     for plot in ['hourly', 'daily', 'weekly', 'monthly']:
@@ -77,16 +77,16 @@ def printconsgraph():
                             "-h 300",
                             "--slope-mode",
                             "DEF:temp=%s:%s_temp:AVERAGE" %(rrdfilename,rrddbname),
-                            "DEF:humidity=%s:%s_humidity:AVERAGE" %(rrdfilename,rrddbname),
+                            "DEF:humidity=%s:%s_hum:AVERAGE" %(rrdfilename,rrddbname),
                             "LINE1:temp#0000FF:Temperature",
                             "LINE2:humidity#00FF00:Humidity"
                             )
         os.system ("rm -rf /var/www/graphs")
-        os.system ("cp -rf %s /var/www/graphs" %(graphpath)) 
-        
+        os.system ("cp -rf %s /var/www/graphs" %(graphpath))
 
 
-        
+
+
 
 #RRD-Datenbank anlegen falls sie noch nicht existiert
 try:
@@ -99,7 +99,7 @@ except IOError:
                          "--step","%s" %(interval),
                          "--start", '0',
                          "DS:%s_temp:GAUGE:2000:U:U" %(rrddbname),
-                         "DS:%s_humidity:GAUGE:2000:U:U" %(rrddbname),
+                         "DS:%s_hum:GAUGE:2000:U:U" %(rrddbname),
                          "RRA:AVERAGE:0.5:1:2160",
                          "RRA:AVERAGE:0.5:5:2016",
                          "RRA:AVERAGE:0.5:15:2880",
@@ -126,4 +126,3 @@ while i!=0:
     print st, t, h
     print "Next measurement in %s seconds" %(interval)
     time.sleep(interval)
-    
