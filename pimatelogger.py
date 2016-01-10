@@ -102,7 +102,7 @@ try:
     i=1
 except IOError:
     print "Creating new database: " + path + "/" + rrdfilename
-    ret = rrdtool.create("%s" %(rrdfilename),
+    ret = rrdtool.create("%s" %(path + "/" + rrdfilename),
                          "--step","%s" %(interval),
                          "--start", '0',
                          "DS:%s_temp:GAUGE:2000:U:U" %(rrddbname),
