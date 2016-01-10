@@ -18,8 +18,8 @@ pin = 4                             #Data Pin
 ### Nothing to configure below this line
 #Construct some variables
 rrdfilename = rrddbname +'.rrd'     #Filename of the RRD Database
-path = '/var/lib/pimatelogger/'     #Path to the Data Directory
-graphpath = path+'graphs/'          #Path to Graph directory
+path = '/var/lib/pimatelogger'     #Path to the Data Directory
+graphpath = path+'/graphs'          #Path to Graph directory
 
 i=0
 
@@ -42,7 +42,7 @@ def printgraph(a):
         elif plot == 'hourly':
             period = 'h'
 
-        ret = rrdtool.graph("%s%s_%s-%s.png" %(graphpath,rrddbname,a,plot),
+        ret = rrdtool.graph("/%s%s_%s-%s.png" %(graphpath,rrddbname,a,plot),
                             "--start",
                             "-1%s" %(period),
                             "--title=%s (%s)" %(title,plot),
@@ -65,7 +65,7 @@ def printconsgraph():
         elif plot == 'hourly':
             period = 'h'
 
-        ret = rrdtool.graph("%s%s_%s_%s.png" %(graphpath,rrddbname,sensorname,plot),
+        ret = rrdtool.graph("/%s%s_%s_%s.png" %(graphpath,rrddbname,sensorname,plot),
                             "--start",
                             "-1%s" %(period),
                             "--title=Temp and Humidity %s (%s)" %(sensorname,plot),
@@ -82,7 +82,7 @@ def printconsgraph():
                             "LINE2:humidity#00FF00:Humidity"
                             )
         os.system ("rm -rf /var/www/graphs")
-        os.system ("cp -rf %s /var/www/graphs" %(graphpath))
+        os.system ("cp -rf %s/ /var/www/graphs" %(graphpath))
 
 
 
@@ -91,10 +91,10 @@ def printconsgraph():
 #RRD-Datenbank anlegen falls sie noch nicht existiert
 try:
     with open(rrdfilename): pass
-    print "Database found: " + path + rrdfilename
+    print "Database found: " + path + "/" + rrdfilename
     i=1
 except IOError:
-    print "Creating new database: " + path + rrdfilename
+    print "Creating new database: " + path + "/" + rrdfilename
     ret = rrdtool.create("%s" %(rrdfilename),
                          "--step","%s" %(interval),
                          "--start", '0',
