@@ -81,8 +81,8 @@ def printconsgraph():
                             "LINE1:temp#0000FF:Temperature",
                             "LINE2:hum#00FF00:Humidity"
                             )
-        os.system ("rm -rf /var/www/graphs")
-        os.system ("cp -rf %s/ /var/www/graphs" %(graphpath))
+        os.system ("rm -rf /var/www/html/graphs")
+        os.system ("cp -rf %s/ /var/www/html/graphs" %(graphpath))
 
 
 
