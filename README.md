@@ -10,6 +10,8 @@ It reads the Temperature and Humidity values from a Sensor like the DHT22, store
 - the corresponding driver installed
 
 ## Installation
+WARNING: This is still very un-finished :)
+
 - Install the Driver for the AM2302 sensor (Instructions: https://learn.adafruit.com/dht-humidity-sensing-on-raspberry-pi-with-gdocs-logging/software-install-updated)
 - install rrdtool and its python integration (sudo apt-get rrdtool python-rrd)
 - install this script
@@ -21,4 +23,4 @@ If you want to use the device with a local display (This is still work in progre
 - install chromium
 
 ## Configuration
-All configuration is done in the Head portion of the Python-Script. 
+All configuration is done in the Head portion of the Python-Script.
