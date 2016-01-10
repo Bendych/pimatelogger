@@ -83,8 +83,7 @@ def printconsgraph():
                             )
         os.system ("rm -rf /var/www/html/graphs")
         os.system ("cp -rf %s/ /var/www/html/graphs" %(graphpath))
-
-
+        os.system ("cp -rf index.htm /var/www/html/index.htm")
 
 try:
     os.stat(path)
