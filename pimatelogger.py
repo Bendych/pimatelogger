@@ -124,7 +124,7 @@ while i!=0:
 #        a.writerow([st,str(t),str(h)])
 
     from rrdtool import update as rrd_update
-    ret = rrd_update('%s' %(rrdfilename), 'N:%s:%s' %(t, h));
+    ret = rrd_update('%s%s' %(path,rrdfilename), 'N:%s:%s' %(t, h));
 
     print "Creating graphics at " + graphpath
     printgraph('temp')
