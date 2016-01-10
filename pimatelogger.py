@@ -97,7 +97,7 @@ except:
 
 #RRD-Datenbank anlegen falls sie noch nicht existiert
 try:
-    with open(rrdfilename): pass
+    with open(path+"/"+rrdfilename): pass
     print "Database found: " + path + "/" + rrdfilename
     i=1
 except IOError:
