@@ -42,7 +42,7 @@ def printgraph(a):
         elif plot == 'hourly':
             period = 'h'
 
-        ret = rrdtool.graph("/%s%s_%s-%s.png" %(graphpath,rrddbname,a,plot),
+        ret = rrdtool.graph("/%s/%s_%s-%s.png" %(graphpath,rrddbname,a,plot),
                             "--start",
                             "-1%s" %(period),
                             "--title=%s (%s)" %(title,plot),
@@ -65,7 +65,7 @@ def printconsgraph():
         elif plot == 'hourly':
             period = 'h'
 
-        ret = rrdtool.graph("/%s%s_%s_%s.png" %(graphpath,rrddbname,sensorname,plot),
+        ret = rrdtool.graph("/%s/%s_%s_%s.png" %(graphpath,rrddbname,sensorname,plot),
                             "--start",
                             "-1%s" %(period),
                             "--title=Temp and Humidity %s (%s)" %(sensorname,plot),
